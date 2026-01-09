@@ -1,3 +1,10 @@
+import sys
+from pathlib import Path
+
+# Add the project directory to sys.path
+project_dir = Path(__file__).resolve().parent
+sys.path.append(str(project_dir))
+
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.responses import JSONResponse
 from milvus_helper.vector_store import get_vector_store
@@ -10,6 +17,7 @@ from Helpers.file_watcher import start_file_watcher
 from Helpers.help_functions import dedupe_ranked_chunks
 from threading import Thread
 from pydantic import BaseModel
+from threading import Thread
 
 
 env_path = Path(".env")
@@ -31,17 +39,8 @@ response_engine = ResponseEngine(
 )
 
 
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException
-from fastapi.responses import JSONResponse
-from milvus_helper.vector_store import get_vector_store
-from ingest.ingest import ingest_directory
-from dotenv import load_dotenv
-from pathlib import Path
-import os
-from Agents.response_agent import ResponseEngine
-from Helpers.file_watcher import start_file_watcher
-from Helpers.help_functions import dedupe_ranked_chunks
-from threading import Thread
+
+
 
 
 env_path = Path(".env")
